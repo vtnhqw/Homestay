@@ -50,16 +50,20 @@
     }
 
     /* Amenity and Location cards */
-    .amenity-card, .location-card, .glass-card {
+    .amenity-card,
+    .location-card,
+    .glass-card {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 1);
       box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05),
-                  0 4px 10px -4px rgba(0, 0, 0, 0.05);
+        0 4px 10px -4px rgba(0, 0, 0, 0.05);
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .dark .amenity-card, .dark .location-card, .dark .glass-card {
+    .dark .amenity-card,
+    .dark .location-card,
+    .dark .glass-card {
       background: rgba(15, 23, 42, 0.45);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -75,12 +79,13 @@
     .dark {
       background: linear-gradient(135deg, #020617 0%, #071935 50%, #0c2b5c 100%) fixed !important;
     }
-    
+
     body {
       background-color: transparent !important;
     }
 
-    .amenity-card:hover, .location-card:hover {
+    .amenity-card:hover,
+    .location-card:hover {
       transform: translateY(-5px);
       border-color: rgba(19, 127, 236, 0.35);
       box-shadow: 0 20px 48px rgba(19, 127, 236, 0.12);
@@ -175,8 +180,14 @@
     }
 
     /* No scrollbar */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
 
     /* Scroll reveal */
     .reveal {
@@ -345,18 +356,19 @@
         <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">Monthly Availability</h2>
         <p class="text-slate-500 dark:text-slate-400">Plan your perfect getaway with our up-to-date calendar.</p>
       </div>
-      <div
-        class="glass-card rounded-2xl shadow-xl p-6 md:p-10 reveal overflow-hidden">
+      <div class="glass-card rounded-2xl shadow-xl p-6 md:p-10 reveal overflow-hidden">
         <div class="flex justify-between items-center mb-8">
           <h3 id="calTitle" class="text-xl font-bold"></h3>
           <div class="flex gap-2">
             <button onclick="prevMonth()"
               class="cal-day available transition-all text-slate-500 p-0 border-none bg-transparent inline-grid place-items-center">
-              <span class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_left</span>
+              <span
+                class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_left</span>
             </button>
             <button onclick="nextMonth()"
               class="cal-day available transition-all text-slate-500 p-0 border-none bg-transparent inline-grid place-items-center">
-              <span class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_right</span>
+              <span
+                class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_right</span>
             </button>
           </div>
         </div>
@@ -370,7 +382,8 @@
           <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Sat</div>
         </div>
         <div id="calGrid" class="grid grid-cols-7 gap-y-1 gap-x-1 text-center"></div>
-        <div class="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-slate-100 dark:border-surface-dark">
+        <div
+          class="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-slate-100 dark:border-surface-dark">
           <div class="flex items-center gap-2">
             <div class="w-3 h-3 rounded-full bg-slate-900 dark:bg-slate-100"></div>
             <span class="text-sm text-slate-500">Available</span>
@@ -405,8 +418,7 @@
           </iframe>
         </div>
         <div class="flex flex-col gap-3 reveal">
-          <div
-            class="location-card flex items-center p-4 rounded-xl shadow-sm">
+          <div class="location-card flex items-center p-4 rounded-xl shadow-sm">
             <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span class="material-symbols-outlined">storefront</span>
             </div>
@@ -419,8 +431,7 @@
               <p class="text-xs text-slate-400 mt-0.5">~5 mins walk</p>
             </div>
           </div>
-          <div
-            class="location-card flex items-center p-4 rounded-xl shadow-sm">
+          <div class="location-card flex items-center p-4 rounded-xl shadow-sm">
             <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span class="material-symbols-outlined">local_hospital</span>
             </div>
@@ -433,8 +444,7 @@
               <p class="text-xs text-slate-400 mt-0.5">~3 mins drive</p>
             </div>
           </div>
-          <div
-            class="location-card flex items-center p-4 rounded-xl shadow-sm">
+          <div class="location-card flex items-center p-4 rounded-xl shadow-sm">
             <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span class="material-symbols-outlined">mosque</span>
             </div>
@@ -447,8 +457,7 @@
               <p class="text-xs text-slate-400 mt-0.5">~10 mins walk</p>
             </div>
           </div>
-          <div
-            class="location-card flex items-center p-4 rounded-xl shadow-sm">
+          <div class="location-card flex items-center p-4 rounded-xl shadow-sm">
             <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span class="material-symbols-outlined">school</span>
             </div>
@@ -461,8 +470,7 @@
               <p class="text-xs text-slate-400 mt-0.5">~7 mins drive</p>
             </div>
           </div>
-          <div
-            class="location-card flex items-center p-4 rounded-xl shadow-sm">
+          <div class="location-card flex items-center p-4 rounded-xl shadow-sm">
             <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <span class="material-symbols-outlined">restaurant</span>
             </div>
@@ -498,76 +506,106 @@
         <!-- Navigation Buttons -->
         <button onclick="scrollGallery(-1)"
           class="absolute left-4 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full border border-white/50 bg-white/60 backdrop-blur-xl shadow-lg inline-grid place-items-center text-slate-800 opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-white hover:border-primary">
-          <span class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_left</span>
+          <span
+            class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_left</span>
         </button>
         <button onclick="scrollGallery(1)"
           class="absolute right-4 top-1/2 -translate-y-1/2 z-10 size-12 rounded-full border border-white/50 bg-white/60 backdrop-blur-xl shadow-lg inline-grid place-items-center text-slate-800 opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-white hover:border-primary">
-          <span class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_right</span>
+          <span
+            class="material-symbols-outlined leading-none text-2xl w-6 h-6 flex items-center justify-center">chevron_right</span>
         </button>
 
         <!-- Scrollable Row -->
         <div id="galleryScroll"
           class="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 no-scrollbar">
-          
+
           <!-- Image 1 -->
-          <div class="min-w-[300px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg2aIA9hfTPkNAH2xzC_Nt_tD6h88M5TRzuvBuinvLIVz5BqQyDrYTXED9kqwgqGOxImr5GAhG_rh1ORQRA_X42GfA3PIl8BVyTgCZHWpGTqIU9YsfR_9Y1v9XzfrFp64jvN3VrieVZB6wcqtZUhZAVIzqOBmKzMZDr51vScWVm1-c0vmYvMKa2v_mhjqK2DApo1OCdOYJt5h_e20XokikIouD3luv3ZA1lR9giBemc3luPZ-oL7kUoTioL-L1eu3XwJxvGadQ"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Main Living Area" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[300px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDg2aIA9hfTPkNAH2xzC_Nt_tD6h88M5TRzuvBuinvLIVz5BqQyDrYTXED9kqwgqGOxImr5GAhG_rh1ORQRA_X42GfA3PIl8BVyTgCZHWpGTqIU9YsfR_9Y1v9XzfrFp64jvN3VrieVZB6wcqtZUhZAVIzqOBmKzMZDr51vScWVm1-c0vmYvMKa2v_mhjqK2DApo1OCdOYJt5h_e20XokikIouD3luv3ZA1lR9giBemc3luPZ-oL7kUoTioL-L1eu3XwJxvGadQ"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Main Living Area" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Main Living Area</span>
             </div>
           </div>
 
           <!-- Image 2 -->
-          <div class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1y9wPNykque_2bXQ4qHi-Y_9rEw5aaDaRKgRfxWA6ASrpklqZBzLakJB4gCq74JUmBUXzIxqLoSZO4eoxNjEEJNekb9xa1XIBQdATmLgj94v9aimr-TZLvZyOaona06oBJ-epJyHYsyIjI7V2RhTGyvsQ_eqr28LpUMU0ku8uayFc2AVFrtK-b_1O72IjYrfc39Y7jqnrTUJGot93_kNUErO_z1EBbxlsM6ctNW9rkiiII4mizerWXLwZktpXMthvZzKStMOG"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Bedroom" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1y9wPNykque_2bXQ4qHi-Y_9rEw5aaDaRKgRfxWA6ASrpklqZBzLakJB4gCq74JUmBUXzIxqLoSZO4eoxNjEEJNekb9xa1XIBQdATmLgj94v9aimr-TZLvZyOaona06oBJ-epJyHYsyIjI7V2RhTGyvsQ_eqr28LpUMU0ku8uayFc2AVFrtK-b_1O72IjYrfc39Y7jqnrTUJGot93_kNUErO_z1EBbxlsM6ctNW9rkiiII4mizerWXLwZktpXMthvZzKStMOG"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Bedroom" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Bedroom Sanctuary</span>
             </div>
           </div>
 
           <!-- Image 3 -->
-          <div class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZejkib71IkUk4JGlm4YS9zrCocI11j1c3_M3z3AKZjRKl4iixe_NC6isRu8dD1nu8N2N0qs124R3WpjTFAdY08HdDWE8YEVtbpDOb5fV8ZcAbdAF8EP9lj5sybknHYhzbkzUaDAnZYy_54w_KWspmw_DeDl3wfRYRXkQA8JufrXyelGGv77-T9YRfVm6yuxP99XGMck57SrCoyi06d4MB2oojxTyRt-rw-G63KM3yh4ikpQzjV_8S6TloVwhWucrSS0mumq2M"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Bathroom" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZejkib71IkUk4JGlm4YS9zrCocI11j1c3_M3z3AKZjRKl4iixe_NC6isRu8dD1nu8N2N0qs124R3WpjTFAdY08HdDWE8YEVtbpDOb5fV8ZcAbdAF8EP9lj5sybknHYhzbkzUaDAnZYy_54w_KWspmw_DeDl3wfRYRXkQA8JufrXyelGGv77-T9YRfVm6yuxP99XGMck57SrCoyi06d4MB2oojxTyRt-rw-G63KM3yh4ikpQzjV_8S6TloVwhWucrSS0mumq2M"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Bathroom" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Minimalist Bathroom</span>
             </div>
           </div>
 
           <!-- Image 4 -->
-          <div class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2cCVoEPZVIrAj_U3LpKkTkrXaYE2kPIgACqKPcpektcKrzBSuXhjv5LtZ8lDgqE-CG1GYS8wQH3CK30BieKwrNW_iNI--iGxEY0aNTXXaOvviqcZu4SCWLsSee18Xf7r6SG35LXkIwndcaeNNOtCFx-XcF3L9LoXgUv8SHUZpejRaRfRc4WBCqqzxY-WioxfvFnZGM-DFKSmOtjCxFUdEpWXhUPo8XFJ_9yjkoX4bCFmNBq0bre_QC4BiV35QkQISkKLpOePz"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Kitchen" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2cCVoEPZVIrAj_U3LpKkTkrXaYE2kPIgACqKPcpektcKrzBSuXhjv5LtZ8lDgqE-CG1GYS8wQH3CK30BieKwrNW_iNI--iGxEY0aNTXXaOvviqcZu4SCWLsSee18Xf7r6SG35LXkIwndcaeNNOtCFx-XcF3L9LoXgUv8SHUZpejRaRfRc4WBCqqzxY-WioxfvFnZGM-DFKSmOtjCxFUdEpWXhUPo8XFJ_9yjkoX4bCFmNBq0bre_QC4BiV35QkQISkKLpOePz"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Kitchen" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Modern Kitchen</span>
             </div>
           </div>
 
           <!-- Image 5 -->
-          <div class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqkTYBdNyb2MVeDuQGlymyS3s8mQ7c8baQWI-OXCOExMEfgoJihk4Ig910zVkwXPM-hhL-zUoW2uITzvusbNZT4fy7vCUwVGzV1TBiL5MZAWYboa1xtNrGKdB0U2ZvYAGnPfPMQklEvVgv-AnMM_VhrzAidTCwQJHj04QZkx8kLh8dlrjPelb8Oj3auL-y6ULCajDaq2Q5gEbd7v9-hvjaegLHhj1P79NQEgz2WQN7BdzwjlbwOF7Yg39TR9RI_h8gFNuYYLC"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Patio" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhqkTYBdNyb2MVeDuQGlymyS3s8mQ7c8baQWI-OXCOExMEfgoJihk4Ig910zVkwXPM-hhL-zUoW2uITzvusbNZT4fy7vCUwVGzV1TBiL5MZAWYboa1xtNrGKdB0U2ZvYAGnPfPMQklEvVgv-AnMM_VhrzAidTCwQJHj04QZkx8kLh8dlrjPelb8Oj3auL-y6ULCajDaq2Q5gEbd7v9-hvjaegLHhj1P79NQEgz2WQN7BdzwjlbwOF7Yg39TR9RI_h8gFNuYYLC"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Patio" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Outdoor Patio</span>
             </div>
           </div>
 
           <!-- Image 6 -->
-          <div class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4-ZvtfTjK8Rh3Up2auY6SXiqZ7tOMD_xh9-BgVY8eM3sfeqa9pxNmJfWqCaqQz0CYoEyEqxtMfH5zNJaHufbbhKN9taQmLbYwZpL3yFzHPxDt2ZUzCVl1f1hQe9vLupExAVBz28Dtcz7pGD2rRlxFfr23BzCnHPVpOKkN0DZEKFoLl1cqQlGzNFIZymqmr2Zn_SbjUhmiSBHjWWs2iARIN09cHJDrtfMRuDwgLxli-wsR2ixVGcbyTDzmRopToyit_PMTwimE"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Pool" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4-ZvtfTjK8Rh3Up2auY6SXiqZ7tOMD_xh9-BgVY8eM3sfeqa9pxNmJfWqCaqQz0CYoEyEqxtMfH5zNJaHufbbhKN9taQmLbYwZpL3yFzHPxDt2ZUzCVl1f1hQe9vLupExAVBz28Dtcz7pGD2rRlxFfr23BzCnHPVpOKkN0DZEKFoLl1cqQlGzNFIZymqmr2Zn_SbjUhmiSBHjWWs2iARIN09cHJDrtfMRuDwgLxli-wsR2ixVGcbyTDzmRopToyit_PMTwimE"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Pool" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Private Pool</span>
             </div>
           </div>
 
           <!-- Image 7 -->
-          <div class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
-            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVotnvddghlhIvct94wx77MivA37tLxNRQzFx_YF3LUigHYDF83Km_4d-CRsGRs40TtdwW2fKXh14YDdDZSbm5h6JSMiAY9-Kmmp-XTd6BgsKEjBfAjGaocPWJCi4JGEUhKYph_6BViPJ_WVf5tnUn0_gXxhHbawL0HQidRN0VIhPClE0-XxgLLgJgifNQMfYRuQMvFdTPHi0ta5KWRnj5OBBPftzp-jQ_zHgDE5XUvgbq6rXQXdwe_OTn-KQUxVaVtUIGv0u9"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110" alt="Exterior" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
+          <div
+            class="min-w-[280px] md:min-w-[400px] aspect-square relative snap-center group/item overflow-hidden rounded-2xl shrink-0 border border-white/40 dark:border-white/5 shadow-xl">
+            <img
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVotnvddghlhIvct94wx77MivA37tLxNRQzFx_YF3LUigHYDF83Km_4d-CRsGRs40TtdwW2fKXh14YDdDZSbm5h6JSMiAY9-Kmmp-XTd6BgsKEjBfAjGaocPWJCi4JGEUhKYph_6BViPJ_WVf5tnUn0_gXxhHbawL0HQidRN0VIhPClE0-XxgLLgJgifNQMfYRuQMvFdTPHi0ta5KWRnj5OBBPftzp-jQ_zHgDE5XUvgbq6rXQXdwe_OTn-KQUxVaVtUIGv0u9"
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover/item:scale-110"
+              alt="Exterior" />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity flex items-end p-6">
               <span class="text-white font-bold">Exterior at Night</span>
             </div>
           </div>
@@ -739,8 +777,7 @@
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div
-          class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
+        <div class="glass-card p-6 rounded-xl hover:shadow-xl transition-shadow reveal">
           <div class="flex items-center gap-4 mb-4">
             <div class="size-11 rounded-full bg-cover bg-center shrink-0"
               style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhPNNdtAtpQ07o3YuicXW5I4kOF2Sb0_dNNFPIh23yKc7QVKrvVk2aWK6khVVJqtJ_75xDsRgvOv84wEU13sxAdZmo2qSvwR5a1BKsVeqS2mvVnRiYlsKQWtmoy9EL6ueC5sR601tW0clpNPf3sJ_JQOJkOgogq4yLP8a5rz5gDI5i28Zj8bMpQXWbgyfbbhq14iBSls9mSLo6h2c_PmByK3NVxhJ8ScPpuiGffthKwB99j0npVPmr5cTW-WMCBu5uO7WcC3Er')">
@@ -755,8 +792,7 @@
             architecture is stunning and the silence is healing."
           </p>
         </div>
-        <div
-          class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
+        <div class="glass-card p-6 rounded-xl hover:shadow-xl transition-shadow reveal">
           <div class="flex items-center gap-4 mb-4">
             <div class="size-11 rounded-full bg-cover bg-center shrink-0"
               style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAk_EjbdjEhC3ly7ZWCVb-NrVkbBsCavxOhku6eUNRf-hPNVxxyuEWiZihiky8CQfFVbwgOJ5B-2CV5fzYkLlPSFxpZpUmdblZOdojmwIX6kYoW-EBggSV7-sKkJGKm-j0whXR--ELw8xMCgYzdEiLDwsKz04wgHvOwLz1JruUz1V35rkNxLmK33INcI2Bxd__OgD_wqf6l82F38nThZsrk6sReAsxbJCEJrkbz8JzOYIn_yQgzWzzUr1pwTa-WuEm_YaO_nALe')">
@@ -771,8 +807,7 @@
             the local guide they provided was a nice touch."
           </p>
         </div>
-        <div
-          class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
+        <div class="glass-card p-6 rounded-xl hover:shadow-xl transition-shadow reveal">
           <div class="flex items-center gap-4 mb-4">
             <div class="size-11 rounded-full bg-cover bg-center shrink-0"
               style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDj7yOaCXPyeSHKCmRicRc3w6QbGQ5Zcj8XLR18f9QcNxnCqiy3vCtsRTKar_uVAf5AO7B1alCTfvNedyxoV9P6iEYbFJzB0aAx8LV9LXeNjjvkGcz2DDDU6tSqoR3FWk4bOd1qhx1DIBl51wLXr3Xr8CzD9TifZoMN3OBAAqI9Ly-FsszxHxRwaBd-7KqbruZrnO5siOK_lqszgAPogmuKYJ0fttV0CzyeC0ZIXVMIZ79d1UoHcd3gsqpGc1g70wKX841yHogd')">
