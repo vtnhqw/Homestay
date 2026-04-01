@@ -1,819 +1,1027 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Serene Stays — Minimalist Homestay</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script>
-  tailwind.config = {
-    darkMode: 'class',
-    theme: {
-      extend: {
-        colors: {
-          primary: '#137fec',
-          'primary-dark': '#0b5ec2',
-          'bg-light': '#f6f7f8',
-          'bg-dark': '#101922',
-          'surface-dark': '#1a2632',
-        },
-        fontFamily: { display: ['Plus Jakarta Sans', 'sans-serif'] },
-        borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', '2xl': '1rem', full: '9999px' },
-        animation: {
-          'float': 'float 6s ease-in-out infinite',
-          'float-1': 'float 6s ease-in-out 1s infinite',
-          'float-2': 'float 6s ease-in-out 2s infinite',
-          'float-3': 'float 6s ease-in-out 3s infinite',
-          'fade-up': 'fadeUp 0.7s ease forwards',
-        },
-        keyframes: {
-          float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
-          fadeUp: { from: { opacity: '0', transform: 'translateY(24px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Serene Stays — Minimalist Homestay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#137fec',
+            'primary-dark': '#0b5ec2',
+            'bg-light': '#f6f7f8',
+            'bg-dark': '#101922',
+            'surface-dark': '#1a2632',
+          },
+          fontFamily: { display: ['Plus Jakarta Sans', 'sans-serif'] },
+          borderRadius: { DEFAULT: '0.25rem', lg: '0.5rem', xl: '0.75rem', '2xl': '1rem', full: '9999px' },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'float-1': 'float 6s ease-in-out 1s infinite',
+            'float-2': 'float 6s ease-in-out 2s infinite',
+            'float-3': 'float 6s ease-in-out 3s infinite',
+            'fade-up': 'fadeUp 0.7s ease forwards',
+          },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+            fadeUp: { from: { opacity: '0', transform: 'translateY(24px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+          },
         },
       },
-    },
-  }
-</script>
-<style>
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    }
+  </script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* Amenity cards */
-  .amenity-card {
-    background: rgba(255,255,255,0.8);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.6);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-    transition: all 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
-  }
-  .dark .amenity-card {
-    background: rgba(26,38,50,0.75);
-    border: 1px solid rgba(255,255,255,0.07);
-  }
-  .amenity-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(19,127,236,0.35);
-    box-shadow: 0 20px 48px rgba(19,127,236,0.12);
-  }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
 
-  /* Masonry */
-  .masonry { columns: 1; column-gap: 1rem; }
-  @media(min-width:640px){ .masonry { columns: 2; } }
-  @media(min-width:1024px){ .masonry { columns: 3; } }
-  .masonry-item { break-inside: avoid; margin-bottom: 1rem; }
+    /* Amenity cards */
+    .amenity-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-  /* Calendar */
-  .cal-day { width:2.5rem; height:2.5rem; border-radius:9999px; display:flex; align-items:center; justify-content:center; margin:auto; font-size:.875rem; cursor:pointer; transition:all .2s; }
-  .cal-day.available:hover { background:rgba(19,127,236,.12); color:#137fec; }
-  .cal-day.booked { color:#94a3b8; text-decoration:line-through; cursor:default; }
-  .cal-day.today { border:2px solid #137fec; color:#137fec; font-weight:700; }
-  .dark .cal-day.booked { color:#475569; }
+    .dark .amenity-card {
+      background: rgba(26, 38, 50, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
 
-  /* Nav active */
-  .nav-link.active { color: #137fec; }
+    .amenity-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(19, 127, 236, 0.35);
+      box-shadow: 0 20px 48px rgba(19, 127, 236, 0.12);
+    }
 
-  /* Booking modal */
-  #bookingModal { display:none; }
-  #bookingModal.open { display:flex; }
+    /* Masonry */
+    .masonry {
+      columns: 1;
+      column-gap: 1rem;
+    }
 
-  /* Scroll reveal */
-  .reveal { opacity:0; transform:translateY(28px); transition: opacity .65s ease, transform .65s ease; }
-  .reveal.visible { opacity:1; transform:none; }
+    @media(min-width:640px) {
+      .masonry {
+        columns: 2;
+      }
+    }
 
-  /* Hero fade-in */
-  .hero-text { animation: fadeUp 0.8s 0.3s ease both; }
+    @media(min-width:1024px) {
+      .masonry {
+        columns: 3;
+      }
+    }
 
-  /* Dark mode toggle */
-  #darkToggle { cursor:pointer; }
-</style>
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+    }
+
+    /* Calendar */
+    .cal-day {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      font-size: .875rem;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .cal-day.available:hover {
+      background: rgba(19, 127, 236, .12);
+      color: #137fec;
+    }
+
+    .cal-day.booked {
+      color: #94a3b8;
+      text-decoration: line-through;
+      cursor: default;
+    }
+
+    .cal-day.today {
+      border: 2px solid #137fec;
+      color: #137fec;
+      font-weight: 700;
+    }
+
+    .dark .cal-day.booked {
+      color: #475569;
+    }
+
+    /* Nav active */
+    .nav-link.active {
+      color: #137fec;
+    }
+
+    /* Booking modal */
+    #bookingModal {
+      display: none;
+    }
+
+    #bookingModal.open {
+      display: flex;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Hero fade-in */
+    .hero-text {
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    /* Dark mode toggle */
+    #darkToggle {
+      cursor: pointer;
+    }
+  </style>
 </head>
+
 <body class="bg-bg-light dark:bg-bg-dark text-slate-900 dark:text-slate-100 font-display overflow-x-hidden">
 
-<!-- ─── HEADER ─────────────────────────────────────────────── -->
-<header id="header" class="sticky top-0 z-50 transition-all duration-300 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto px-5 sm:px-10 py-4 flex items-center justify-between">
+  <!-- ─── HEADER ─────────────────────────────────────────────── -->
+  <header id="header"
+    class="sticky top-0 z-50 transition-all duration-300 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-5 sm:px-10 py-4 flex items-center justify-between">
 
-    <a href="#home" class="flex items-center gap-3">
-      <span class="material-symbols-outlined text-3xl text-primary">cottage</span>
-      <span class="text-xl font-bold tracking-tight">Serene Stays</span>
-    </a>
+      <a href="#home" class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-3xl text-primary">cottage</span>
+        <span class="text-xl font-bold tracking-tight">Serene Stays</span>
+      </a>
 
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="#home"      class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors active">Home</a>
-      <a href="#gallery"   class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Gallery</a>
-      <a href="#amenities" class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Amenities</a>
-      <a href="#location"  class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Location</a>
-      <a href="#reviews"   class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Reviews</a>
-    </nav>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#home"
+          class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors active">Home</a>
+        <a href="#gallery"
+          class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Gallery</a>
+        <a href="#amenities"
+          class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Amenities</a>
+        <a href="#location"
+          class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Location</a>
+        <a href="#reviews"
+          class="nav-link text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">Reviews</a>
+      </nav>
 
-    <div class="flex items-center gap-3">
-      <!-- Language -->
-      <div class="hidden sm:flex items-center border border-slate-200 dark:border-slate-700 rounded-full p-1 bg-slate-50 dark:bg-slate-800">
-        <button id="langEN" class="px-3 py-1 text-xs font-bold rounded-full bg-white dark:bg-slate-700 shadow-sm transition-all">EN</button>
-        <button id="langBM" class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 transition-colors">BM</button>
+      <div class="flex items-center gap-3">
+        <!-- Language -->
+        <div
+          class="hidden sm:flex items-center border border-slate-200 dark:border-slate-700 rounded-full p-1 bg-slate-50 dark:bg-slate-800">
+          <button id="langEN"
+            class="px-3 py-1 text-xs font-bold rounded-full bg-white dark:bg-slate-700 shadow-sm transition-all">EN</button>
+          <button id="langBM"
+            class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-900 dark:hover:text-slate-200 transition-colors">BM</button>
+        </div>
+        <!-- Dark toggle -->
+        <button id="darkToggle"
+          class="p-2 rounded-full text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          title="Toggle dark mode">
+          <span class="material-symbols-outlined" id="darkIcon">dark_mode</span>
+        </button>
+        <!-- Book Now -->
+        <button onclick="openModal()"
+          class="hidden md:flex min-w-[84px] items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors">
+          Book Now
+        </button>
+        <!-- Mobile menu -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 dark:text-slate-300">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
       </div>
-      <!-- Dark toggle -->
-      <button id="darkToggle" class="p-2 rounded-full text-slate-500 hover:text-primary hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Toggle dark mode">
-        <span class="material-symbols-outlined" id="darkIcon">dark_mode</span>
-      </button>
-      <!-- Book Now -->
-      <button onclick="openModal()" class="hidden md:flex min-w-[84px] items-center justify-center rounded-lg h-10 px-6 bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary-dark transition-colors">
-        Book Now
-      </button>
-      <!-- Mobile menu -->
-      <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 dark:text-slate-300">
-        <span class="material-symbols-outlined">menu</span>
-      </button>
     </div>
-  </div>
 
-  <!-- Mobile nav -->
-  <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-5 pb-4">
-    <div class="flex flex-col gap-3 pt-3">
-      <a href="#home"      class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary" onclick="closeMobileMenu()">Home</a>
-      <a href="#gallery"   class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary" onclick="closeMobileMenu()">Gallery</a>
-      <a href="#amenities" class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary" onclick="closeMobileMenu()">Amenities</a>
-      <a href="#location"  class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary" onclick="closeMobileMenu()">Location</a>
-      <a href="#reviews"   class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary" onclick="closeMobileMenu()">Reviews</a>
-      <button onclick="openModal(); closeMobileMenu();" class="mt-2 w-full rounded-lg h-11 bg-primary text-white font-bold text-sm">Book Now</button>
+    <!-- Mobile nav -->
+    <div id="mobileMenu"
+      class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-5 pb-4">
+      <div class="flex flex-col gap-3 pt-3">
+        <a href="#home" class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary"
+          onclick="closeMobileMenu()">Home</a>
+        <a href="#gallery" class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary"
+          onclick="closeMobileMenu()">Gallery</a>
+        <a href="#amenities" class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary"
+          onclick="closeMobileMenu()">Amenities</a>
+        <a href="#location" class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary"
+          onclick="closeMobileMenu()">Location</a>
+        <a href="#reviews" class="text-sm font-medium py-2 text-slate-700 dark:text-slate-300 hover:text-primary"
+          onclick="closeMobileMenu()">Reviews</a>
+        <button onclick="openModal(); closeMobileMenu();"
+          class="mt-2 w-full rounded-lg h-11 bg-primary text-white font-bold text-sm">Book Now</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<!-- ─── HERO ──────────────────────────────────────────────── -->
-<section id="home" class="relative min-h-[620px] flex flex-col items-center justify-center">
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style='background-image: linear-gradient(rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.52) 100%),
+  <!-- ─── HERO ──────────────────────────────────────────────── -->
+  <section id="home" class="relative min-h-[620px] flex flex-col items-center justify-center">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style='background-image: linear-gradient(rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.52) 100%),
     url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-OoQZKJCqs39Nil4AmsuPsl0s2IyzfGOkPB_tD9ph9SJspuxIFhVR3wmFWBEMwbcSu1VamtE7MMO7_MliiOYNIPWYX1Q2NBIB_WqI_B3xlCHYBWCbZ7sD3lnJ1SqaUMeqkWyM33PohAm6Rwnoohl2XupIAYY7aNT5ElOX0kMuLTf6s4Nj5kgggKU2Qw5mDu1sWrTsZugzH1yl138c62eHHocAuHsB4-73N79thyICk8SFFHcvdGWFGodtSs7SRBl20NaMBBZR");'>
-  </div>
+    </div>
 
-  <div class="relative z-10 flex flex-col items-center text-center gap-5 max-w-3xl px-6 hero-text">
-    <span class="text-white/80 uppercase tracking-[0.2em] text-xs font-semibold">The Private Sanctuary</span>
-    <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-sm">
-      Find Peace in Nature
-    </h1>
-    <p class="text-white/85 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-sm">
-      A minimalist sanctuary for your soul. Experience the quiet luxury of our private homestay, designed to reconnect you with yourself.
-    </p>
-    <div class="flex flex-wrap justify-center gap-4 mt-2">
-      <a href="#gallery" class="flex items-center justify-center gap-2 rounded-lg h-12 px-8 bg-white text-slate-900 text-sm font-bold hover:bg-slate-100 transition-colors">
-        <span class="material-symbols-outlined text-lg">photo_library</span> View Gallery
-      </a>
-      <a href="#amenities" class="flex items-center justify-center gap-2 rounded-lg h-12 px-8 border border-white text-white text-sm font-bold hover:bg-white/10 transition-colors">
-        <span class="material-symbols-outlined text-lg">star</span> Amenities
-      </a>
+    <div class="relative z-10 flex flex-col items-center text-center gap-5 max-w-3xl px-6 hero-text">
+      <span class="text-white/80 uppercase tracking-[0.2em] text-xs font-semibold">The Private Sanctuary</span>
+      <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-sm">
+        Find Peace in Nature
+      </h1>
+      <p class="text-white/85 text-lg md:text-xl font-normal leading-relaxed max-w-xl drop-shadow-sm">
+        A minimalist sanctuary for your soul. Experience the quiet luxury of our private homestay, designed to reconnect
+        you with yourself.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-2">
+        <a href="#gallery"
+          class="flex items-center justify-center gap-2 rounded-lg h-12 px-8 bg-white text-slate-900 text-sm font-bold hover:bg-slate-100 transition-colors">
+          <span class="material-symbols-outlined text-lg">photo_library</span> View Gallery
+        </a>
+        <a href="#amenities"
+          class="flex items-center justify-center gap-2 rounded-lg h-12 px-8 border border-white text-white text-sm font-bold hover:bg-white/10 transition-colors">
+          <span class="material-symbols-outlined text-lg">star</span> Amenities
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BOOKING BAR ───────────────────────────────────────── -->
+  <div class="relative z-20 -mt-8 px-4 md:px-10 max-w-4xl mx-auto w-full">
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-5 border border-slate-100 dark:border-slate-700">
+      <div class="flex flex-col md:flex-row gap-4 items-end">
+        <div class="flex-1 w-full">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Check-in</label>
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">calendar_today</span>
+            <input type="date" id="checkin"
+              class="w-full h-12 pl-10 pr-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
+          </div>
+        </div>
+        <div class="flex-1 w-full">
+          <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Check-out</label>
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">event</span>
+            <input type="date" id="checkout"
+              class="w-full h-12 pl-10 pr-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" />
+          </div>
+        </div>
+        <button onclick="openModal()"
+          class="w-full md:w-auto h-12 px-8 bg-primary text-white rounded-lg font-bold text-sm shadow-lg shadow-primary/30 hover:bg-primary-dark transition-all flex items-center justify-center gap-2 shrink-0">
+          <span class="material-symbols-outlined text-lg">search</span>
+          Check Availability
+        </button>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ─── BOOKING BAR ───────────────────────────────────────── -->
-<div class="relative z-20 -mt-8 px-4 md:px-10 max-w-4xl mx-auto w-full">
-  <div class="bg-white dark:bg-slate-800 rounded-xl shadow-2xl p-5 border border-slate-100 dark:border-slate-700">
-    <div class="flex flex-col md:flex-row gap-4 items-end">
-      <div class="flex-1 w-full">
-        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Check-in</label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">calendar_today</span>
-          <input type="date" id="checkin" class="w-full h-12 pl-10 pr-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none"/>
+  <!-- ─── AVAILABILITY CALENDAR ────────────────────────────── -->
+  <section class="px-4 md:px-10 py-20 bg-bg-light dark:bg-bg-dark">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10 reveal">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">Monthly Availability</h2>
+        <p class="text-slate-500 dark:text-slate-400">Plan your perfect getaway with our up-to-date calendar.</p>
+      </div>
+      <div
+        class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 p-6 md:p-10 reveal">
+        <div class="flex justify-between items-center mb-8">
+          <h3 id="calTitle" class="text-xl font-bold"></h3>
+          <div class="flex gap-2">
+            <button onclick="prevMonth()"
+              class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 transition-colors">
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button onclick="nextMonth()"
+              class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 transition-colors">
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-7 gap-y-3 gap-x-1 text-center mb-2">
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Sun</div>
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Mon</div>
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tue</div>
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wed</div>
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Thu</div>
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Fri</div>
+          <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Sat</div>
+        </div>
+        <div id="calGrid" class="grid grid-cols-7 gap-y-1 gap-x-1 text-center"></div>
+        <div class="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-slate-100 dark:border-slate-700">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-slate-900 dark:bg-slate-100"></div>
+            <span class="text-sm text-slate-500">Available</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-slate-200 dark:bg-slate-700"></div>
+            <span class="text-sm text-slate-400">Booked</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full border-2 border-primary"></div>
+            <span class="text-sm text-slate-500">Today</span>
+          </div>
         </div>
       </div>
-      <div class="flex-1 w-full">
-        <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Check-out</label>
-        <div class="relative">
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">event</span>
-          <input type="date" id="checkout" class="w-full h-12 pl-10 pr-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none"/>
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─────────────────────────────────────────────── -->
+  <section class="px-4 md:px-10 py-24 bg-white dark:bg-slate-900">
+    <div class="max-w-4xl mx-auto text-center reveal">
+      <span class="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">About the Residence</span>
+      <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-6">Designed for Quiet Reflection</h2>
+      <p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
+        Nestled in the quiet hills, our homestay offers a retreat from the bustling city. Designed with minimalism in
+        mind, every corner breathes tranquility, featuring natural materials, soft lighting, and an atmosphere of pure
+        relaxation. We invite you to pause, breathe, and simply be.
+      </p>
+      <div class="flex flex-wrap justify-center gap-10 mt-14 pt-10 border-t border-slate-100 dark:border-slate-800">
+        <div class="flex flex-col items-center gap-2 reveal">
+          <div class="p-4 rounded-full bg-primary/10 text-primary"><span
+              class="material-symbols-outlined text-2xl">wifi</span></div>
+          <span class="font-semibold text-sm">High-Speed WiFi</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 reveal">
+          <div class="p-4 rounded-full bg-primary/10 text-primary"><span
+              class="material-symbols-outlined text-2xl">local_cafe</span></div>
+          <span class="font-semibold text-sm">Artisan Coffee</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 reveal">
+          <div class="p-4 rounded-full bg-primary/10 text-primary"><span
+              class="material-symbols-outlined text-2xl">spa</span></div>
+          <span class="font-semibold text-sm">Private Garden</span>
+        </div>
+        <div class="flex flex-col items-center gap-2 reveal">
+          <div class="p-4 rounded-full bg-primary/10 text-primary"><span
+              class="material-symbols-outlined text-2xl">directions_car</span></div>
+          <span class="font-semibold text-sm">Free Parking</span>
         </div>
       </div>
-      <button onclick="openModal()" class="w-full md:w-auto h-12 px-8 bg-primary text-white rounded-lg font-bold text-sm shadow-lg shadow-primary/30 hover:bg-primary-dark transition-all flex items-center justify-center gap-2 shrink-0">
-        <span class="material-symbols-outlined text-lg">search</span>
+    </div>
+  </section>
+
+  <!-- ─── GALLERY ───────────────────────────────────────────── -->
+  <section id="gallery" class="px-4 md:px-10 py-20 bg-bg-light dark:bg-bg-dark">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-10 max-w-2xl reveal">
+        <span class="text-primary font-bold tracking-widest uppercase text-xs block mb-3">Visual Tour</span>
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
+          Serene Spaces<br />designed for<br />peaceful living.
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
+          Every corner is crafted to bring tranquility and inspiration.
+        </p>
+      </div>
+
+      <!-- Grid gallery -->
+      <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[580px] reveal">
+        <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl min-h-[300px]">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDg2aIA9hfTPkNAH2xzC_Nt_tD6h88M5TRzuvBuinvLIVz5BqQyDrYTXED9kqwgqGOxImr5GAhG_rh1ORQRA_X42GfA3PIl8BVyTgCZHWpGTqIU9YsfR_9Y1v9XzfrFp64jvN3VrieVZB6wcqtZUhZAVIzqOBmKzMZDr51vScWVm1-c0vmYvMKa2v_mhjqK2DApo1OCdOYJt5h_e20XokikIouD3luv3ZA1lR9giBemc3luPZ-oL7kUoTioL-L1eu3XwJxvGadQ')">
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+            <span class="text-white font-semibold">Main Living Area</span>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1y9wPNykque_2bXQ4qHi-Y_9rEw5aaDaRKgRfxWA6ASrpklqZBzLakJB4gCq74JUmBUXzIxqLoSZO4eoxNjEEJNekb9xa1XIBQdATmLgj94v9aimr-TZLvZyOaona06oBJ-epJyHYsyIjI7V2RhTGyvsQ_eqr28LpUMU0ku8uayFc2AVFrtK-b_1O72IjYrfc39Y7jqnrTUJGot93_kNUErO_z1EBbxlsM6ctNW9rkiiII4mizerWXLwZktpXMthvZzKStMOG')">
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-white font-semibold text-sm">Bedroom</span>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZejkib71IkUk4JGlm4YS9zrCocI11j1c3_M3z3AKZjRKl4iixe_NC6isRu8dD1nu8N2N0qs124R3WpjTFAdY08HdDWE8YEVtbpDOb5fV8ZcAbdAF8EP9lj5sybknHYhzbkzUaDAnZYy_54w_KWspmw_DeDl3wfRYRXkQA8JufrXyelGGv77-T9YRfVm6yuxP99XGMck57SrCoyi06d4MB2oojxTyRt-rw-G63KM3yh4ikpQzjV_8S6TloVwhWucrSS0mumq2M')">
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-white font-semibold text-sm">Bathroom</span>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2cCVoEPZVIrAj_U3LpKkTkrXaYE2kPIgACqKPcpektcKrzBSuXhjv5LtZ8lDgqE-CG1GYS8wQH3CK30BieKwrNW_iNI--iGxEY0aNTXXaOvviqcZu4SCWLsSee18Xf7r6SG35LXkIwndcaeNNOtCFx-XcF3L9LoXgUv8SHUZpejRaRfRc4WBCqqzxY-WioxfvFnZGM-DFKSmOtjCxFUdEpWXhUPo8XFJ_9yjkoX4bCFmNBq0bre_QC4BiV35QkQISkKLpOePz')">
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-white font-semibold text-sm">Kitchen</span>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhqkTYBdNyb2MVeDuQGlymyS3s8mQ7c8baQWI-OXCOExMEfgoJihk4Ig910zVkwXPM-hhL-zUoW2uITzvusbNZT4fy7vCUwVGzV1TBiL5MZAWYboa1xtNrGKdB0U2ZvYAGnPfPMQklEvVgv-AnMM_VhrzAidTCwQJHj04QZkx8kLh8dlrjPelb8Oj3auL-y6ULCajDaq2Q5gEbd7v9-hvjaegLHhj1P79NQEgz2WQN7BdzwjlbwOF7Yg39TR9RI_h8gFNuYYLC')">
+          </div>
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+            <span class="text-white font-semibold text-sm">Outdoor Patio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Masonry for extra photos -->
+      <div class="masonry mt-6 reveal">
+        <div class="masonry-item relative group overflow-hidden rounded-2xl">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdDi966r40EVVKzqJl8JEYIUR2BA6fFkI05OFw9vYe5ndDsfCQTc1giUUYq644KFAm6FAmtHgLbIFBET3yNmoxSA4l0MXkexphZaK9aK8TCc4Z93-W8DL4USCkAmQiRpiz6ptAQNsyHLnF-bxhwyVW7xF-5keErY6kJyommVjMUpyiJ6sbvsblggtQJP7yck1XVOHaDqAFvr29JVq_x25rICYjmMFxCGVKg1RmrET5m3V-Mbml614riN0LgzRw6klddCGI7rlh"
+            alt="Minimalist living area"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
+            <span class="text-white font-medium">Main Living Area</span>
+          </div>
+        </div>
+        <div class="masonry-item relative group overflow-hidden rounded-2xl">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuABTjWLiT6diEvYSVBQqwf7BCUFNHWJdkpwNO58bcwNwqv085TOhwt0CDLv2jrTjOZ0nQTDICcBbnCPIC2Nwn-wDZiZ3iHAOkXCdwRY-LT5g9jxyP2Z7nLBiGCuyyGr9gc1hkXIInvUvornjmLwXWkAu0Tx5RlmfZ1zxgCthrYtkbNjS-nVVhPJPeeD1RftVGrBj58oAfPthFIeit_r41dLXcIzscfZRQ0FIJ2SqvsyhP6inZDvekzTUYnh6R3aMZGBVZ_gkILW"
+            alt="Chef kitchen"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
+            <span class="text-white font-medium">Chef's Kitchen</span>
+          </div>
+        </div>
+        <div class="masonry-item relative group overflow-hidden rounded-2xl">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4-ZvtfTjK8Rh3Up2auY6SXiqZ7tOMD_xh9-BgVY8eM3sfeqa9pxNmJfWqCaqQz0CYoEyEqxtMfH5zNJaHufbbhKN9taQmLbYwZpL3yFzHPxDt2ZUzCVl1f1hQe9vLupExAVBz28Dtcz7pGD2rRlxFfr23BzCnHPVpOKkN0DZEKFoLl1cqQlGzNFIZymqmr2Zn_SbjUhmiSBHjWWs2iARIN09cHJDrtfMRuDwgLxli-wsR2ixVGcbyTDzmRopToyit_PMTwimE"
+            alt="Pool deck"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
+            <span class="text-white font-medium">Private Pool</span>
+          </div>
+        </div>
+        <div class="masonry-item relative group overflow-hidden rounded-2xl">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuClvlTBPW6vx2mbhZyTD9mHf8Cc-gabg4lJOnV_BAzQtBHJKZOLRVYozB2lpHKC5SdVGPtFXphtFpPyAO-VlotPZBNRO1zeXOSJKRz43kIMOSPR1kVTmwQ7if8PmEiITxGZluFjWCzMiRj-x4MGPGc4pmBBU7uFKmwd2Z-HSW_TzAvdDiryVMEpfFxw9PrcifrDmBd-hSTqgcRpdmqLmLMJnr6uEoyBrk05I0WRCjkAdSHfYM8sKga5eDvF9WrmFCOol24AzhUm"
+            alt="Bedroom"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl" />
+        </div>
+        <div class="masonry-item relative group overflow-hidden rounded-2xl">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5lLXvEbDfH2X0iT7oYlot7dA8Bhn-Y9P2xAmU1jGZAGxAc1XN6zGNUNNePCe-PIvaJv1eY_zimFOxQFM4ehVkgzs9YkoL6f1mnmymP9OHRfYkaRu12bBzDiJDGEBcUcjYPgsMr5FLi61iDC3aODOkFHCkYhY8eyU-1antVue2Z36iZFwJJSMRLpu_yBbgOWFfWMzwceiZQlEpui0a_FV3SLsrcVDtePQXEseoWpG9Nb4EI61KWpof2hL1b34x7nNxTUpGEajD"
+            alt="Lounge"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl" />
+        </div>
+        <div class="masonry-item relative group overflow-hidden rounded-2xl">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVotnvddghlhIvct94wx77MivA37tLxNRQzFx_YF3LUigHYDF83Km_4d-CRsGRs40TtdwW2fKXh14YDdDZSbm5h6JSMiAY9-Kmmp-XTd6BgsKEjBfAjGaocPWJCi4JGEUhKYph_6BViPJ_WVf5tnUn0_gXxhHbawL0HQidRN0VIhPClE0-XxgLLgJgifNQMfYRuQMvFdTPHi0ta5KWRnj5OBBPftzp-jQ_zHgDE5XUvgbq6rXQXdwe_OTn-KQUxVaVtUIGv0u9"
+            alt="Exterior"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
+            <span class="text-white font-medium">Exterior at Dusk</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── AMENITIES ─────────────────────────────────────────── -->
+  <section id="amenities" class="px-4 md:px-10 py-20 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight mb-2">Premium Amenities</h2>
+          <p class="text-slate-500 dark:text-slate-400">Everything you need for a comfortable, productive, and relaxing
+            stay.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <!-- Amenity cards -->
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float">
+              <span class="material-symbols-outlined text-2xl">wifi</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">High-Speed Wi-Fi</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Fiber optic suitable for 4K streaming.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-1">
+              <span class="material-symbols-outlined text-2xl">skillet</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">Chef's Kitchen</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Fully equipped with premium appliances.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-2">
+              <span class="material-symbols-outlined text-2xl">pool</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">Private Pool</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Heated salt water pool with lounge area.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-3">
+              <span class="material-symbols-outlined text-2xl">desk</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">Workspace</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Ergonomic chair and monitor setup.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float">
+              <span class="material-symbols-outlined text-2xl">bed</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">King-size Beds</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Premium linens and memory foam mattresses.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-1">
+              <span class="material-symbols-outlined text-2xl">ac_unit</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">Climate Control</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Central A/C and smart heating system.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-2">
+              <span class="material-symbols-outlined text-2xl">local_parking</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">Free Parking</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">Secure garage for two vehicles.</p>
+            </div>
+          </div>
+        </div>
+        <div class="group reveal">
+          <div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
+            <div
+              class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-3">
+              <span class="material-symbols-outlined text-2xl">local_laundry_service</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-lg mb-1">Washer & Dryer</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400">High-efficiency in-unit laundry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LOCATION ──────────────────────────────────────────── -->
+  <section id="location" class="px-4 md:px-10 py-20 bg-bg-light dark:bg-bg-dark">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col items-center mb-12 text-center reveal">
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">Location & Nearby Facilities</h2>
+        <p class="text-slate-500 dark:text-slate-400">Convenience and essentials just a stone's throw away.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div
+          class="w-full h-[380px] rounded-xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700 reveal">
+          <iframe
+            class="w-full h-full grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.2!2d101.8693!3d3.3526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f8a1a1a1a1a%3A0x1!2sSerendah%2C%20Selangor%2C%20Malaysia!5e0!3m2!1sen!2smy!4v1697526781234!5m2!1sen!2smy"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border:0;" allowfullscreen>
+          </iframe>
+        </div>
+        <div class="flex flex-col gap-3 reveal">
+          <div
+            class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+            <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined">storefront</span>
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-bold text-sm">Convenience Store</h4>
+              <p class="text-xs text-slate-500 mt-0.5">7-Eleven / Family Mart</p>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-sm">0.5 km</p>
+              <p class="text-xs text-slate-400 mt-0.5">~5 mins walk</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+            <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined">local_hospital</span>
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-bold text-sm">Health Clinic</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Community Care Clinic</p>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-sm">1.2 km</p>
+              <p class="text-xs text-slate-400 mt-0.5">~3 mins drive</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+            <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined">mosque</span>
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-bold text-sm">Mosque</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Masjid Al-Hidayah</p>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-sm">0.8 km</p>
+              <p class="text-xs text-slate-400 mt-0.5">~10 mins walk</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+            <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined">school</span>
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-bold text-sm">Primary School</h4>
+              <p class="text-xs text-slate-500 mt-0.5">SK Bukit Damansara</p>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-sm">2.5 km</p>
+              <p class="text-xs text-slate-400 mt-0.5">~7 mins drive</p>
+            </div>
+          </div>
+          <div
+            class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+            <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+              <span class="material-symbols-outlined">restaurant</span>
+            </div>
+            <div class="ml-4 flex-1">
+              <h4 class="font-bold text-sm">Local Restaurant</h4>
+              <p class="text-xs text-slate-500 mt-0.5">Warung Pak Mat</p>
+            </div>
+            <div class="text-right">
+              <p class="font-bold text-sm">0.3 km</p>
+              <p class="text-xs text-slate-400 mt-0.5">~3 mins walk</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── REVIEWS ───────────────────────────────────────────── -->
+  <section id="reviews" class="px-4 md:px-10 py-20 bg-white dark:bg-slate-900">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-10 reveal">
+        <h2 class="text-2xl md:text-3xl font-bold">Guest Experiences</h2>
+        <div class="flex items-center text-primary">
+          <span class="material-symbols-outlined text-lg">star</span>
+          <span class="material-symbols-outlined text-lg">star</span>
+          <span class="material-symbols-outlined text-lg">star</span>
+          <span class="material-symbols-outlined text-lg">star</span>
+          <span class="material-symbols-outlined text-lg">star</span>
+          <span class="text-slate-900 dark:text-slate-100 text-sm font-semibold ml-2">4.98 (124 reviews)</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="size-11 rounded-full bg-cover bg-center shrink-0"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhPNNdtAtpQ07o3YuicXW5I4kOF2Sb0_dNNFPIh23yKc7QVKrvVk2aWK6khVVJqtJ_75xDsRgvOv84wEU13sxAdZmo2qSvwR5a1BKsVeqS2mvVnRiYlsKQWtmoy9EL6ueC5sR601tW0clpNPf3sJ_JQOJkOgogq4yLP8a5rz5gDI5i28Zj8bMpQXWbgyfbbhq14iBSls9mSLo6h2c_PmByK3NVxhJ8ScPpuiGffthKwB99j0npVPmr5cTW-WMCBu5uO7WcC3Er')">
+            </div>
+            <div>
+              <p class="font-bold text-sm">Sarah Jenkins</p>
+              <p class="text-xs text-slate-500">October 2023</p>
+            </div>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+            "Absolutely breathtaking. The photos don't do it justice. It was the perfect escape from our busy lives. The
+            architecture is stunning and the silence is healing."
+          </p>
+        </div>
+        <div
+          class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="size-11 rounded-full bg-cover bg-center shrink-0"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAk_EjbdjEhC3ly7ZWCVb-NrVkbBsCavxOhku6eUNRf-hPNVxxyuEWiZihiky8CQfFVbwgOJ5B-2CV5fzYkLlPSFxpZpUmdblZOdojmwIX6kYoW-EBggSV7-sKkJGKm-j0whXR--ELw8xMCgYzdEiLDwsKz04wgHvOwLz1JruUz1V35rkNxLmK33INcI2Bxd__OgD_wqf6l82F38nThZsrk6sReAsxbJCEJrkbz8JzOYIn_yQgzWzzUr1pwTa-WuEm_YaO_nALe')">
+            </div>
+            <div>
+              <p class="font-bold text-sm">Mark Thompson</p>
+              <p class="text-xs text-slate-500">September 2023</p>
+            </div>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+            "Minimalism at its finest. Everything you need and nothing you don't. The host was incredibly responsive and
+            the local guide they provided was a nice touch."
+          </p>
+        </div>
+        <div
+          class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="size-11 rounded-full bg-cover bg-center shrink-0"
+              style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDj7yOaCXPyeSHKCmRicRc3w6QbGQ5Zcj8XLR18f9QcNxnCqiy3vCtsRTKar_uVAf5AO7B1alCTfvNedyxoV9P6iEYbFJzB0aAx8LV9LXeNjjvkGcz2DDDU6tSqoR3FWk4bOd1qhx1DIBl51wLXr3Xr8CzD9TifZoMN3OBAAqI9Ly-FsszxHxRwaBd-7KqbruZrnO5siOK_lqszgAPogmuKYJ0fttV0CzyeC0ZIXVMIZ79d1UoHcd3gsqpGc1g70wKX841yHogd')">
+            </div>
+            <div>
+              <p class="font-bold text-sm">Elena Rodriguez</p>
+              <p class="text-xs text-slate-500">August 2023</p>
+            </div>
+          </div>
+          <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
+            "A magical place. Waking up to that view every morning was a dream. Highly recommend the private chef
+            service they offer as an add-on."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ───────────────────────────────────────────────── -->
+  <section class="py-20 px-4">
+    <div class="max-w-5xl mx-auto bg-primary rounded-2xl overflow-hidden relative reveal">
+      <div class="absolute inset-0 opacity-10"
+        style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:20px 20px;"></div>
+      <div
+        class="relative z-10 flex flex-col md:flex-row items-center justify-between p-10 md:p-16 gap-8 text-center md:text-left">
+        <div class="flex-1">
+          <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">Ready to unwind?</h2>
+          <p class="text-blue-100 text-lg">Book your stay today and discover the true meaning of relaxation.</p>
+        </div>
+        <button onclick="openModal()"
+          class="bg-white text-primary font-bold py-4 px-10 rounded-xl shadow-lg hover:bg-slate-50 transition-colors whitespace-nowrap text-sm">
+          Check Availability
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────── -->
+  <footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-10 px-5 md:px-10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10">
+      <div class="flex flex-col gap-4 max-w-sm">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl">cottage</span>
+          <span class="text-lg font-bold">Serene Stays</span>
+        </div>
+        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+          A curated collection of minimalist sanctuaries designed to help you reconnect with nature and yourself.
+        </p>
+      </div>
+      <div class="flex gap-12 flex-wrap">
+        <div class="flex flex-col gap-3">
+          <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xs uppercase tracking-widest">Company</h4>
+          <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">About Us</a>
+          <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Careers</a>
+          <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Contact</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xs uppercase tracking-widest">Support</h4>
+          <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Help Center</a>
+          <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Terms of Service</a>
+          <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Privacy Policy</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xs uppercase tracking-widest">Social</h4>
+          <div class="flex gap-4">
+            <a href="#" class="text-slate-400 hover:text-primary transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                  d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153A4.902 4.902 0 012.228 18.1c-.247-.636-.416-1.363-.465-2.427C1.713 14.57 1.7 14.23 1.7 11.488s.013-2.822.06-3.803c.049-.953.218-1.472.337-1.817.177-.457.388-.783.728-1.123.34-.34.666-.551 1.123-.728.345-.134.864-.293 1.817-.337C6.746 3.635 7.076 3.625 9.568 3.625h2.624c2.492 0 2.822.01 3.803.055z"
+                  clip-rule="evenodd" />
+              </svg>
+            </a>
+            <a href="#" class="text-slate-400 hover:text-primary transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 text-sm">
+      © 2024 Serene Stays. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- ─── BOOKING MODAL ─────────────────────────────────────── -->
+  <div id="bookingModal" class="fixed inset-0 z-[100] items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div
+      class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-8 w-full max-w-sm relative animate-fade-up border border-slate-100 dark:border-slate-700">
+      <button onclick="closeModal()"
+        class="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+      <h3 class="text-xl font-bold mb-1">Start Your Journey</h3>
+      <p class="text-slate-500 text-sm mb-8">Choose your preferred way to book your stay</p>
+      <div class="grid grid-cols-2 gap-4">
+        <a href="https://wa.me/601112345678" target="_blank"
+          class="flex flex-col items-center gap-3 p-5 rounded-xl border-2 border-slate-100 dark:border-slate-700 hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all group cursor-pointer">
+          <div class="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+            </svg>
+          </div>
+          <div class="text-center">
+            <p class="font-bold text-sm">Book via WhatsApp</p>
+            <p class="text-xs text-slate-400 mt-1">Direct chat for personal arrangements</p>
+          </div>
+          <span class="text-green-600 text-xs font-semibold group-hover:underline">Start Chat →</span>
+        </a>
+        <div onclick="closeModal()"
+          class="flex flex-col items-center gap-3 p-5 rounded-xl border-2 border-slate-100 dark:border-slate-700 hover:border-primary hover:bg-primary/5 transition-all group cursor-pointer">
+          <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-xl">calendar_month</span>
+          </div>
+          <div class="text-center">
+            <p class="font-bold text-sm">Book Online</p>
+            <p class="text-xs text-slate-400 mt-1">Instant confirmation & secure payment</p>
+          </div>
+          <span class="text-primary text-xs font-semibold group-hover:underline">Check Dates →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── STICKY PRICE BAR (mobile) ────────────────────────── -->
+  <div
+    class="fixed bottom-0 left-0 w-full z-40 md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 shadow-xl">
+    <div class="flex items-center justify-between gap-4">
+      <div>
+        <span class="text-xs text-slate-500">From</span>
+        <div class="text-lg font-bold">$185 <span class="text-sm font-normal text-slate-500">/night</span></div>
+      </div>
+      <button onclick="openModal()"
+        class="flex-1 max-w-[200px] h-12 rounded-xl bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary-dark transition-colors">
         Check Availability
       </button>
     </div>
   </div>
-</div>
 
-<!-- ─── AVAILABILITY CALENDAR ────────────────────────────── -->
-<section class="px-4 md:px-10 py-20 bg-bg-light dark:bg-bg-dark">
-  <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-10 reveal">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">Monthly Availability</h2>
-      <p class="text-slate-500 dark:text-slate-400">Plan your perfect getaway with our up-to-date calendar.</p>
-    </div>
-    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 p-6 md:p-10 reveal">
-      <div class="flex justify-between items-center mb-8">
-        <h3 id="calTitle" class="text-xl font-bold"></h3>
-        <div class="flex gap-2">
-          <button onclick="prevMonth()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 transition-colors">
-            <span class="material-symbols-outlined">chevron_left</span>
-          </button>
-          <button onclick="nextMonth()" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-500 transition-colors">
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+  <!-- ─── FLOATING PRICE WIDGET (desktop) ──────────────────── -->
+  <div class="hidden md:flex fixed bottom-8 right-8 z-40">
+    <div
+      class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl shadow-2xl flex flex-col gap-4 min-w-[280px]">
+      <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-4">
+        <div>
+          <span class="text-2xl font-bold">$185</span>
+          <span class="text-sm text-slate-500"> /night</span>
+        </div>
+        <div class="flex items-center gap-1 text-sm font-semibold">
+          <span class="material-symbols-outlined text-yellow-500 text-lg">star</span>
+          4.92 (128)
         </div>
       </div>
-      <div class="grid grid-cols-7 gap-y-3 gap-x-1 text-center mb-2">
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Sun</div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Mon</div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tue</div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Wed</div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Thu</div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Fri</div>
-        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Sat</div>
-      </div>
-      <div id="calGrid" class="grid grid-cols-7 gap-y-1 gap-x-1 text-center"></div>
-      <div class="flex items-center justify-center gap-8 mt-8 pt-6 border-t border-slate-100 dark:border-slate-700">
-        <div class="flex items-center gap-2">
-          <div class="w-3 h-3 rounded-full bg-slate-900 dark:bg-slate-100"></div>
-          <span class="text-sm text-slate-500">Available</span>
+      <div class="flex gap-2">
+        <div class="flex-1 p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-bg-light dark:bg-bg-dark">
+          <div class="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Check-in</div>
+          <div class="text-sm font-semibold mt-0.5" id="widgetCheckin">Select</div>
         </div>
-        <div class="flex items-center gap-2">
-          <div class="w-3 h-3 rounded-full bg-slate-200 dark:bg-slate-700"></div>
-          <span class="text-sm text-slate-400">Booked</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="w-3 h-3 rounded-full border-2 border-primary"></div>
-          <span class="text-sm text-slate-500">Today</span>
+        <div class="flex-1 p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-bg-light dark:bg-bg-dark">
+          <div class="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Check-out</div>
+          <div class="text-sm font-semibold mt-0.5" id="widgetCheckout">Select</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── ABOUT ─────────────────────────────────────────────── -->
-<section class="px-4 md:px-10 py-24 bg-white dark:bg-slate-900">
-  <div class="max-w-4xl mx-auto text-center reveal">
-    <span class="text-primary font-semibold tracking-widest text-xs uppercase mb-4 block">About the Residence</span>
-    <h2 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-6">Designed for Quiet Reflection</h2>
-    <p class="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
-      Nestled in the quiet hills, our homestay offers a retreat from the bustling city. Designed with minimalism in mind, every corner breathes tranquility, featuring natural materials, soft lighting, and an atmosphere of pure relaxation. We invite you to pause, breathe, and simply be.
-    </p>
-    <div class="flex flex-wrap justify-center gap-10 mt-14 pt-10 border-t border-slate-100 dark:border-slate-800">
-      <div class="flex flex-col items-center gap-2 reveal">
-        <div class="p-4 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-2xl">wifi</span></div>
-        <span class="font-semibold text-sm">High-Speed WiFi</span>
-      </div>
-      <div class="flex flex-col items-center gap-2 reveal">
-        <div class="p-4 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-2xl">local_cafe</span></div>
-        <span class="font-semibold text-sm">Artisan Coffee</span>
-      </div>
-      <div class="flex flex-col items-center gap-2 reveal">
-        <div class="p-4 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-2xl">spa</span></div>
-        <span class="font-semibold text-sm">Private Garden</span>
-      </div>
-      <div class="flex flex-col items-center gap-2 reveal">
-        <div class="p-4 rounded-full bg-primary/10 text-primary"><span class="material-symbols-outlined text-2xl">directions_car</span></div>
-        <span class="font-semibold text-sm">Free Parking</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── GALLERY ───────────────────────────────────────────── -->
-<section id="gallery" class="px-4 md:px-10 py-20 bg-bg-light dark:bg-bg-dark">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-10 max-w-2xl reveal">
-      <span class="text-primary font-bold tracking-widest uppercase text-xs block mb-3">Visual Tour</span>
-      <h2 class="text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4">
-        Serene Spaces<br/>designed for<br/>peaceful living.
-      </h2>
-      <p class="text-slate-500 dark:text-slate-400 text-lg leading-relaxed">
-        Every corner is crafted to bring tranquility and inspiration.
-      </p>
-    </div>
-
-    <!-- Grid gallery -->
-    <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[580px] reveal">
-      <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-2xl min-h-[300px]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDg2aIA9hfTPkNAH2xzC_Nt_tD6h88M5TRzuvBuinvLIVz5BqQyDrYTXED9kqwgqGOxImr5GAhG_rh1ORQRA_X42GfA3PIl8BVyTgCZHWpGTqIU9YsfR_9Y1v9XzfrFp64jvN3VrieVZB6wcqtZUhZAVIzqOBmKzMZDr51vScWVm1-c0vmYvMKa2v_mhjqK2DApo1OCdOYJt5h_e20XokikIouD3luv3ZA1lR9giBemc3luPZ-oL7kUoTioL-L1eu3XwJxvGadQ')">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
-          <span class="text-white font-semibold">Main Living Area</span>
-        </div>
-      </div>
-      <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuD1y9wPNykque_2bXQ4qHi-Y_9rEw5aaDaRKgRfxWA6ASrpklqZBzLakJB4gCq74JUmBUXzIxqLoSZO4eoxNjEEJNekb9xa1XIBQdATmLgj94v9aimr-TZLvZyOaona06oBJ-epJyHYsyIjI7V2RhTGyvsQ_eqr28LpUMU0ku8uayFc2AVFrtK-b_1O72IjYrfc39Y7jqnrTUJGot93_kNUErO_z1EBbxlsM6ctNW9rkiiII4mizerWXLwZktpXMthvZzKStMOG')">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <span class="text-white font-semibold text-sm">Bedroom</span>
-        </div>
-      </div>
-      <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZejkib71IkUk4JGlm4YS9zrCocI11j1c3_M3z3AKZjRKl4iixe_NC6isRu8dD1nu8N2N0qs124R3WpjTFAdY08HdDWE8YEVtbpDOb5fV8ZcAbdAF8EP9lj5sybknHYhzbkzUaDAnZYy_54w_KWspmw_DeDl3wfRYRXkQA8JufrXyelGGv77-T9YRfVm6yuxP99XGMck57SrCoyi06d4MB2oojxTyRt-rw-G63KM3yh4ikpQzjV_8S6TloVwhWucrSS0mumq2M')">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <span class="text-white font-semibold text-sm">Bathroom</span>
-        </div>
-      </div>
-      <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2cCVoEPZVIrAj_U3LpKkTkrXaYE2kPIgACqKPcpektcKrzBSuXhjv5LtZ8lDgqE-CG1GYS8wQH3CK30BieKwrNW_iNI--iGxEY0aNTXXaOvviqcZu4SCWLsSee18Xf7r6SG35LXkIwndcaeNNOtCFx-XcF3L9LoXgUv8SHUZpejRaRfRc4WBCqqzxY-WioxfvFnZGM-DFKSmOtjCxFUdEpWXhUPo8XFJ_9yjkoX4bCFmNBq0bre_QC4BiV35QkQISkKLpOePz')">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <span class="text-white font-semibold text-sm">Kitchen</span>
-        </div>
-      </div>
-      <div class="relative group overflow-hidden rounded-2xl min-h-[140px]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-          style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhqkTYBdNyb2MVeDuQGlymyS3s8mQ7c8baQWI-OXCOExMEfgoJihk4Ig910zVkwXPM-hhL-zUoW2uITzvusbNZT4fy7vCUwVGzV1TBiL5MZAWYboa1xtNrGKdB0U2ZvYAGnPfPMQklEvVgv-AnMM_VhrzAidTCwQJHj04QZkx8kLh8dlrjPelb8Oj3auL-y6ULCajDaq2Q5gEbd7v9-hvjaegLHhj1P79NQEgz2WQN7BdzwjlbwOF7Yg39TR9RI_h8gFNuYYLC')">
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <span class="text-white font-semibold text-sm">Outdoor Patio</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Masonry for extra photos -->
-    <div class="masonry mt-6 reveal">
-      <div class="masonry-item relative group overflow-hidden rounded-2xl">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdDi966r40EVVKzqJl8JEYIUR2BA6fFkI05OFw9vYe5ndDsfCQTc1giUUYq644KFAm6FAmtHgLbIFBET3yNmoxSA4l0MXkexphZaK9aK8TCc4Z93-W8DL4USCkAmQiRpiz6ptAQNsyHLnF-bxhwyVW7xF-5keErY6kJyommVjMUpyiJ6sbvsblggtQJP7yck1XVOHaDqAFvr29JVq_x25rICYjmMFxCGVKg1RmrET5m3V-Mbml614riN0LgzRw6klddCGI7rlh"
-          alt="Minimalist living area" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
-          <span class="text-white font-medium">Main Living Area</span>
-        </div>
-      </div>
-      <div class="masonry-item relative group overflow-hidden rounded-2xl">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuABTjWLiT6diEvYSVBQqwf7BCUFNHWJdkpwNO58bcwNwqv085TOhwt0CDLv2jrTjOZ0nQTDICcBbnCPIC2Nwn-wDZiZ3iHAOkXCdwRY-LT5g9jxyP2Z7nLBiGCuyyGr9gc1hkXIInvUvornjmLwXWkAu0Tx5RlmfZ1zxgCthrYtkbNjS-nVVhPJPeeD1RftVGrBj58oAfPthFIeit_r41dLXcIzscfZRQ0FIJ2SqvsyhP6inZDvekzTUYnh6R3aMZGBVZ_gkILW"
-          alt="Chef kitchen" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
-          <span class="text-white font-medium">Chef's Kitchen</span>
-        </div>
-      </div>
-      <div class="masonry-item relative group overflow-hidden rounded-2xl">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4-ZvtfTjK8Rh3Up2auY6SXiqZ7tOMD_xh9-BgVY8eM3sfeqa9pxNmJfWqCaqQz0CYoEyEqxtMfH5zNJaHufbbhKN9taQmLbYwZpL3yFzHPxDt2ZUzCVl1f1hQe9vLupExAVBz28Dtcz7pGD2rRlxFfr23BzCnHPVpOKkN0DZEKFoLl1cqQlGzNFIZymqmr2Zn_SbjUhmiSBHjWWs2iARIN09cHJDrtfMRuDwgLxli-wsR2ixVGcbyTDzmRopToyit_PMTwimE"
-          alt="Pool deck" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
-          <span class="text-white font-medium">Private Pool</span>
-        </div>
-      </div>
-      <div class="masonry-item relative group overflow-hidden rounded-2xl">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuClvlTBPW6vx2mbhZyTD9mHf8Cc-gabg4lJOnV_BAzQtBHJKZOLRVYozB2lpHKC5SdVGPtFXphtFpPyAO-VlotPZBNRO1zeXOSJKRz43kIMOSPR1kVTmwQ7if8PmEiITxGZluFjWCzMiRj-x4MGPGc4pmBBU7uFKmwd2Z-HSW_TzAvdDiryVMEpfFxw9PrcifrDmBd-hSTqgcRpdmqLmLMJnr6uEoyBrk05I0WRCjkAdSHfYM8sKga5eDvF9WrmFCOol24AzhUm"
-          alt="Bedroom" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl"/>
-      </div>
-      <div class="masonry-item relative group overflow-hidden rounded-2xl">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5lLXvEbDfH2X0iT7oYlot7dA8Bhn-Y9P2xAmU1jGZAGxAc1XN6zGNUNNePCe-PIvaJv1eY_zimFOxQFM4ehVkgzs9YkoL6f1mnmymP9OHRfYkaRu12bBzDiJDGEBcUcjYPgsMr5FLi61iDC3aODOkFHCkYhY8eyU-1antVue2Z36iZFwJJSMRLpu_yBbgOWFfWMzwceiZQlEpui0a_FV3SLsrcVDtePQXEseoWpG9Nb4EI61KWpof2hL1b34x7nNxTUpGEajD"
-          alt="Lounge" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl"/>
-      </div>
-      <div class="masonry-item relative group overflow-hidden rounded-2xl">
-        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVotnvddghlhIvct94wx77MivA37tLxNRQzFx_YF3LUigHYDF83Km_4d-CRsGRs40TtdwW2fKXh14YDdDZSbm5h6JSMiAY9-Kmmp-XTd6BgsKEjBfAjGaocPWJCi4JGEUhKYph_6BViPJ_WVf5tnUn0_gXxhHbawL0HQidRN0VIhPClE0-XxgLLgJgifNQMfYRuQMvFdTPHi0ta5KWRnj5OBBPftzp-jQ_zHgDE5XUvgbq6rXQXdwe_OTn-KQUxVaVtUIGv0u9"
-          alt="Exterior" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105 rounded-2xl"/>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-5 rounded-2xl">
-          <span class="text-white font-medium">Exterior at Dusk</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── AMENITIES ─────────────────────────────────────────── -->
-<section id="amenities" class="px-4 md:px-10 py-20 bg-white dark:bg-slate-900">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 reveal">
-      <div>
-        <h2 class="text-3xl font-bold tracking-tight mb-2">Premium Amenities</h2>
-        <p class="text-slate-500 dark:text-slate-400">Everything you need for a comfortable, productive, and relaxing stay.</p>
-      </div>
-    </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-      <!-- Amenity cards -->
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float">
-          <span class="material-symbols-outlined text-2xl">wifi</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">High-Speed Wi-Fi</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Fiber optic suitable for 4K streaming.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-1">
-          <span class="material-symbols-outlined text-2xl">skillet</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">Chef's Kitchen</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Fully equipped with premium appliances.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-2">
-          <span class="material-symbols-outlined text-2xl">pool</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">Private Pool</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Heated salt water pool with lounge area.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-3">
-          <span class="material-symbols-outlined text-2xl">desk</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">Workspace</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Ergonomic chair and monitor setup.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float">
-          <span class="material-symbols-outlined text-2xl">bed</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">King-size Beds</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Premium linens and memory foam mattresses.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-1">
-          <span class="material-symbols-outlined text-2xl">ac_unit</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">Climate Control</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Central A/C and smart heating system.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-2">
-          <span class="material-symbols-outlined text-2xl">local_parking</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">Free Parking</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">Secure garage for two vehicles.</p></div>
-      </div></div>
-      <div class="group reveal"><div class="amenity-card h-full flex flex-col gap-4 rounded-2xl p-6">
-        <div class="size-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 animate-float-3">
-          <span class="material-symbols-outlined text-2xl">local_laundry_service</span>
-        </div>
-        <div><h3 class="font-bold text-lg mb-1">Washer & Dryer</h3>
-        <p class="text-sm text-slate-500 dark:text-slate-400">High-efficiency in-unit laundry.</p></div>
-      </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── LOCATION ──────────────────────────────────────────── -->
-<section id="location" class="px-4 md:px-10 py-20 bg-bg-light dark:bg-bg-dark">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex flex-col items-center mb-12 text-center reveal">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-2">Location & Nearby Facilities</h2>
-      <p class="text-slate-500 dark:text-slate-400">Convenience and essentials just a stone's throw away.</p>
-    </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-      <div class="w-full h-[380px] rounded-xl overflow-hidden shadow-lg border border-slate-100 dark:border-slate-700 reveal">
-        <iframe class="w-full h-full grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.2!2d101.8693!3d3.3526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4f8a1a1a1a1a%3A0x1!2sSerendah%2C%20Selangor%2C%20Malaysia!5e0!3m2!1sen!2smy!4v1697526781234!5m2!1sen!2smy"
-          loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="border:0;" allowfullscreen>
-        </iframe>
-      </div>
-      <div class="flex flex-col gap-3 reveal">
-        <div class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-          <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined">storefront</span>
-          </div>
-          <div class="ml-4 flex-1">
-            <h4 class="font-bold text-sm">Convenience Store</h4>
-            <p class="text-xs text-slate-500 mt-0.5">7-Eleven / Family Mart</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-sm">0.5 km</p>
-            <p class="text-xs text-slate-400 mt-0.5">~5 mins walk</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-          <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined">local_hospital</span>
-          </div>
-          <div class="ml-4 flex-1">
-            <h4 class="font-bold text-sm">Health Clinic</h4>
-            <p class="text-xs text-slate-500 mt-0.5">Community Care Clinic</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-sm">1.2 km</p>
-            <p class="text-xs text-slate-400 mt-0.5">~3 mins drive</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-          <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined">mosque</span>
-          </div>
-          <div class="ml-4 flex-1">
-            <h4 class="font-bold text-sm">Mosque</h4>
-            <p class="text-xs text-slate-500 mt-0.5">Masjid Al-Hidayah</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-sm">0.8 km</p>
-            <p class="text-xs text-slate-400 mt-0.5">~10 mins walk</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-          <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined">school</span>
-          </div>
-          <div class="ml-4 flex-1">
-            <h4 class="font-bold text-sm">Primary School</h4>
-            <p class="text-xs text-slate-500 mt-0.5">SK Bukit Damansara</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-sm">2.5 km</p>
-            <p class="text-xs text-slate-400 mt-0.5">~7 mins drive</p>
-          </div>
-        </div>
-        <div class="flex items-center p-4 rounded-xl bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
-          <div class="size-11 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-            <span class="material-symbols-outlined">restaurant</span>
-          </div>
-          <div class="ml-4 flex-1">
-            <h4 class="font-bold text-sm">Local Restaurant</h4>
-            <p class="text-xs text-slate-500 mt-0.5">Warung Pak Mat</p>
-          </div>
-          <div class="text-right">
-            <p class="font-bold text-sm">0.3 km</p>
-            <p class="text-xs text-slate-400 mt-0.5">~3 mins walk</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── REVIEWS ───────────────────────────────────────────── -->
-<section id="reviews" class="px-4 md:px-10 py-20 bg-white dark:bg-slate-900">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex items-center gap-3 mb-10 reveal">
-      <h2 class="text-2xl md:text-3xl font-bold">Guest Experiences</h2>
-      <div class="flex items-center text-primary">
-        <span class="material-symbols-outlined text-lg">star</span>
-        <span class="material-symbols-outlined text-lg">star</span>
-        <span class="material-symbols-outlined text-lg">star</span>
-        <span class="material-symbols-outlined text-lg">star</span>
-        <span class="material-symbols-outlined text-lg">star</span>
-        <span class="text-slate-900 dark:text-slate-100 text-sm font-semibold ml-2">4.98 (124 reviews)</span>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="size-11 rounded-full bg-cover bg-center shrink-0"
-            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhPNNdtAtpQ07o3YuicXW5I4kOF2Sb0_dNNFPIh23yKc7QVKrvVk2aWK6khVVJqtJ_75xDsRgvOv84wEU13sxAdZmo2qSvwR5a1BKsVeqS2mvVnRiYlsKQWtmoy9EL6ueC5sR601tW0clpNPf3sJ_JQOJkOgogq4yLP8a5rz5gDI5i28Zj8bMpQXWbgyfbbhq14iBSls9mSLo6h2c_PmByK3NVxhJ8ScPpuiGffthKwB99j0npVPmr5cTW-WMCBu5uO7WcC3Er')">
-          </div>
-          <div>
-            <p class="font-bold text-sm">Sarah Jenkins</p>
-            <p class="text-xs text-slate-500">October 2023</p>
-          </div>
-        </div>
-        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
-          "Absolutely breathtaking. The photos don't do it justice. It was the perfect escape from our busy lives. The architecture is stunning and the silence is healing."
-        </p>
-      </div>
-      <div class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="size-11 rounded-full bg-cover bg-center shrink-0"
-            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAk_EjbdjEhC3ly7ZWCVb-NrVkbBsCavxOhku6eUNRf-hPNVxxyuEWiZihiky8CQfFVbwgOJ5B-2CV5fzYkLlPSFxpZpUmdblZOdojmwIX6kYoW-EBggSV7-sKkJGKm-j0whXR--ELw8xMCgYzdEiLDwsKz04wgHvOwLz1JruUz1V35rkNxLmK33INcI2Bxd__OgD_wqf6l82F38nThZsrk6sReAsxbJCEJrkbz8JzOYIn_yQgzWzzUr1pwTa-WuEm_YaO_nALe')">
-          </div>
-          <div>
-            <p class="font-bold text-sm">Mark Thompson</p>
-            <p class="text-xs text-slate-500">September 2023</p>
-          </div>
-        </div>
-        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
-          "Minimalism at its finest. Everything you need and nothing you don't. The host was incredibly responsive and the local guide they provided was a nice touch."
-        </p>
-      </div>
-      <div class="bg-bg-light dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-lg transition-shadow reveal">
-        <div class="flex items-center gap-4 mb-4">
-          <div class="size-11 rounded-full bg-cover bg-center shrink-0"
-            style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDj7yOaCXPyeSHKCmRicRc3w6QbGQ5Zcj8XLR18f9QcNxnCqiy3vCtsRTKar_uVAf5AO7B1alCTfvNedyxoV9P6iEYbFJzB0aAx8LV9LXeNjjvkGcz2DDDU6tSqoR3FWk4bOd1qhx1DIBl51wLXr3Xr8CzD9TifZoMN3OBAAqI9Ly-FsszxHxRwaBd-7KqbruZrnO5siOK_lqszgAPogmuKYJ0fttV0CzyeC0ZIXVMIZ79d1UoHcd3gsqpGc1g70wKX841yHogd')">
-          </div>
-          <div>
-            <p class="font-bold text-sm">Elena Rodriguez</p>
-            <p class="text-xs text-slate-500">August 2023</p>
-          </div>
-        </div>
-        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed italic">
-          "A magical place. Waking up to that view every morning was a dream. Highly recommend the private chef service they offer as an add-on."
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CTA ───────────────────────────────────────────────── -->
-<section class="py-20 px-4">
-  <div class="max-w-5xl mx-auto bg-primary rounded-2xl overflow-hidden relative reveal">
-    <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(#fff 1px,transparent 1px);background-size:20px 20px;"></div>
-    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between p-10 md:p-16 gap-8 text-center md:text-left">
-      <div class="flex-1">
-        <h2 class="text-white text-3xl md:text-4xl font-bold mb-4">Ready to unwind?</h2>
-        <p class="text-blue-100 text-lg">Book your stay today and discover the true meaning of relaxation.</p>
-      </div>
-      <button onclick="openModal()" class="bg-white text-primary font-bold py-4 px-10 rounded-xl shadow-lg hover:bg-slate-50 transition-colors whitespace-nowrap text-sm">
-        Check Availability
+      <button onclick="openModal()"
+        class="w-full h-12 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-colors shadow-md">
+        Reserve
       </button>
+      <p class="text-center text-xs text-slate-400">You won't be charged yet</p>
     </div>
   </div>
-</section>
 
-<!-- ─── FOOTER ────────────────────────────────────────────── -->
-<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pt-16 pb-10 px-5 md:px-10">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-10">
-    <div class="flex flex-col gap-4 max-w-sm">
-      <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-primary text-2xl">cottage</span>
-        <span class="text-lg font-bold">Serene Stays</span>
-      </div>
-      <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-        A curated collection of minimalist sanctuaries designed to help you reconnect with nature and yourself.
-      </p>
-    </div>
-    <div class="flex gap-12 flex-wrap">
-      <div class="flex flex-col gap-3">
-        <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xs uppercase tracking-widest">Company</h4>
-        <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">About Us</a>
-        <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Careers</a>
-        <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Contact</a>
-      </div>
-      <div class="flex flex-col gap-3">
-        <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xs uppercase tracking-widest">Support</h4>
-        <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Help Center</a>
-        <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Terms of Service</a>
-        <a href="#" class="text-slate-500 hover:text-primary text-sm transition-colors">Privacy Policy</a>
-      </div>
-      <div class="flex flex-col gap-3">
-        <h4 class="text-slate-900 dark:text-slate-100 font-bold text-xs uppercase tracking-widest">Social</h4>
-        <div class="flex gap-4">
-          <a href="#" class="text-slate-400 hover:text-primary transition-colors">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153A4.902 4.902 0 012.228 18.1c-.247-.636-.416-1.363-.465-2.427C1.713 14.57 1.7 14.23 1.7 11.488s.013-2.822.06-3.803c.049-.953.218-1.472.337-1.817.177-.457.388-.783.728-1.123.34-.34.666-.551 1.123-.728.345-.134.864-.293 1.817-.337C6.746 3.635 7.076 3.625 9.568 3.625h2.624c2.492 0 2.822.01 3.803.055z" clip-rule="evenodd"/></svg>
-          </a>
-          <a href="#" class="text-slate-400 hover:text-primary transition-colors">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 text-sm">
-    © 2024 Serene Stays. All rights reserved.
-  </div>
-</footer>
-
-<!-- ─── BOOKING MODAL ─────────────────────────────────────── -->
-<div id="bookingModal" class="fixed inset-0 z-[100] items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-  <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-8 w-full max-w-sm relative animate-fade-up border border-slate-100 dark:border-slate-700">
-    <button onclick="closeModal()" class="absolute top-4 right-4 p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200">
-      <span class="material-symbols-outlined">close</span>
-    </button>
-    <h3 class="text-xl font-bold mb-1">Start Your Journey</h3>
-    <p class="text-slate-500 text-sm mb-8">Choose your preferred way to book your stay</p>
-    <div class="grid grid-cols-2 gap-4">
-      <a href="https://wa.me/601112345678" target="_blank"
-        class="flex flex-col items-center gap-3 p-5 rounded-xl border-2 border-slate-100 dark:border-slate-700 hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all group cursor-pointer">
-        <div class="size-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-sm">Book via WhatsApp</p>
-          <p class="text-xs text-slate-400 mt-1">Direct chat for personal arrangements</p>
-        </div>
-        <span class="text-green-600 text-xs font-semibold group-hover:underline">Start Chat →</span>
-      </a>
-      <div onclick="closeModal()" class="flex flex-col items-center gap-3 p-5 rounded-xl border-2 border-slate-100 dark:border-slate-700 hover:border-primary hover:bg-primary/5 transition-all group cursor-pointer">
-        <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-          <span class="material-symbols-outlined text-xl">calendar_month</span>
-        </div>
-        <div class="text-center">
-          <p class="font-bold text-sm">Book Online</p>
-          <p class="text-xs text-slate-400 mt-1">Instant confirmation & secure payment</p>
-        </div>
-        <span class="text-primary text-xs font-semibold group-hover:underline">Check Dates →</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ─── STICKY PRICE BAR (mobile) ────────────────────────── -->
-<div class="fixed bottom-0 left-0 w-full z-40 md:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 p-4 shadow-xl">
-  <div class="flex items-center justify-between gap-4">
-    <div>
-      <span class="text-xs text-slate-500">From</span>
-      <div class="text-lg font-bold">$185 <span class="text-sm font-normal text-slate-500">/night</span></div>
-    </div>
-    <button onclick="openModal()" class="flex-1 max-w-[200px] h-12 rounded-xl bg-primary text-white text-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary-dark transition-colors">
-      Check Availability
-    </button>
-  </div>
-</div>
-
-<!-- ─── FLOATING PRICE WIDGET (desktop) ──────────────────── -->
-<div class="hidden md:flex fixed bottom-8 right-8 z-40">
-  <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl shadow-2xl flex flex-col gap-4 min-w-[280px]">
-    <div class="flex justify-between items-center border-b border-slate-100 dark:border-slate-800 pb-4">
-      <div>
-        <span class="text-2xl font-bold">$185</span>
-        <span class="text-sm text-slate-500"> /night</span>
-      </div>
-      <div class="flex items-center gap-1 text-sm font-semibold">
-        <span class="material-symbols-outlined text-yellow-500 text-lg">star</span>
-        4.92 (128)
-      </div>
-    </div>
-    <div class="flex gap-2">
-      <div class="flex-1 p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-bg-light dark:bg-bg-dark">
-        <div class="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Check-in</div>
-        <div class="text-sm font-semibold mt-0.5" id="widgetCheckin">Select</div>
-      </div>
-      <div class="flex-1 p-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-bg-light dark:bg-bg-dark">
-        <div class="text-[9px] uppercase font-bold text-slate-500 tracking-wider">Check-out</div>
-        <div class="text-sm font-semibold mt-0.5" id="widgetCheckout">Select</div>
-      </div>
-    </div>
-    <button onclick="openModal()" class="w-full h-12 rounded-xl bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-colors shadow-md">
-      Reserve
-    </button>
-    <p class="text-center text-xs text-slate-400">You won't be charged yet</p>
-  </div>
-</div>
-
-<script>
-  // ── Dark Mode ────────────────────────────────────────────
-  const html = document.documentElement;
-  const darkToggle = document.getElementById('darkToggle');
-  const darkIcon = document.getElementById('darkIcon');
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    html.classList.add('dark'); darkIcon.textContent = 'light_mode';
-  }
-  darkToggle.addEventListener('click', () => {
-    html.classList.toggle('dark');
-    const isDark = html.classList.contains('dark');
-    darkIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-
-  // ── Mobile Menu ──────────────────────────────────────────
-  document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-    document.getElementById('mobileMenu').classList.toggle('hidden');
-  });
-  function closeMobileMenu() { document.getElementById('mobileMenu').classList.add('hidden'); }
-
-  // ── Modal ────────────────────────────────────────────────
-  function openModal() { document.getElementById('bookingModal').classList.add('open'); }
-  function closeModal() { document.getElementById('bookingModal').classList.remove('open'); }
-  document.getElementById('bookingModal').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('bookingModal')) closeModal();
-  });
-
-  // ── Date inputs → widget ────────────────────────────────
-  const checkinEl = document.getElementById('checkin');
-  const checkoutEl = document.getElementById('checkout');
-  checkinEl.addEventListener('change', () => {
-    const d = checkinEl.value ? new Date(checkinEl.value) : null;
-    document.getElementById('widgetCheckin').textContent = d ? d.toLocaleDateString('en-MY',{month:'short',day:'numeric'}) : 'Select';
-  });
-  checkoutEl.addEventListener('change', () => {
-    const d = checkoutEl.value ? new Date(checkoutEl.value) : null;
-    document.getElementById('widgetCheckout').textContent = d ? d.toLocaleDateString('en-MY',{month:'short',day:'numeric'}) : 'Select';
-  });
-
-  // ── Calendar ─────────────────────────────────────────────
-  const BOOKED_DAYS = new Set([1,2,3,4,13,14,15,21,22,29,30]); // sample
-  let calYear, calMonth;
-  const now = new Date();
-  calYear = now.getFullYear(); calMonth = now.getMonth();
-
-  function renderCalendar() {
-    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-    document.getElementById('calTitle').textContent = `${months[calMonth]} ${calYear}`;
-    const grid = document.getElementById('calGrid');
-    grid.innerHTML = '';
-    const firstDay = new Date(calYear, calMonth, 1).getDay();
-    const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
-    const todayDate = now.getDate(), todayMonth = now.getMonth(), todayYear = now.getFullYear();
-    for (let i = 0; i < firstDay; i++) { const e = document.createElement('div'); grid.appendChild(e); }
-    for (let d = 1; d <= daysInMonth; d++) {
-      const cell = document.createElement('div');
-      cell.className = 'p-1';
-      const isToday = d===todayDate && calMonth===todayMonth && calYear===todayYear;
-      const isBooked = BOOKED_DAYS.has(d);
-      const dayEl = document.createElement('div');
-      dayEl.textContent = d;
-      dayEl.className = 'cal-day ' + (isToday ? 'today' : isBooked ? 'booked' : 'available');
-      cell.appendChild(dayEl);
-      grid.appendChild(cell);
+  <script>
+    // ── Dark Mode ────────────────────────────────────────────
+    const html = document.documentElement;
+    const darkToggle = document.getElementById('darkToggle');
+    const darkIcon = document.getElementById('darkIcon');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      html.classList.add('dark'); darkIcon.textContent = 'light_mode';
     }
-  }
-  function prevMonth() { calMonth--; if(calMonth<0){calMonth=11;calYear--;} renderCalendar(); }
-  function nextMonth() { calMonth++; if(calMonth>11){calMonth=0;calYear++;} renderCalendar(); }
-  renderCalendar();
-
-  // ── Scroll Reveal ────────────────────────────────────────
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => observer.observe(el));
-
-  // ── Active nav link ──────────────────────────────────────
-  const sections = document.querySelectorAll('section[id], div[id="home"]');
-  const navLinks = document.querySelectorAll('.nav-link');
-  const scrollObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
+    darkToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const isDark = html.classList.contains('dark');
+      darkIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-  }, { threshold: 0.4 });
-  document.querySelectorAll('section[id]').forEach(s => scrollObs.observe(s));
-</script>
+
+    // ── Mobile Menu ──────────────────────────────────────────
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+    function closeMobileMenu() { document.getElementById('mobileMenu').classList.add('hidden'); }
+
+    // ── Modal ────────────────────────────────────────────────
+    function openModal() { document.getElementById('bookingModal').classList.add('open'); }
+    function closeModal() { document.getElementById('bookingModal').classList.remove('open'); }
+    document.getElementById('bookingModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('bookingModal')) closeModal();
+    });
+
+    // ── Date inputs → widget ────────────────────────────────
+    const checkinEl = document.getElementById('checkin');
+    const checkoutEl = document.getElementById('checkout');
+    checkinEl.addEventListener('change', () => {
+      const d = checkinEl.value ? new Date(checkinEl.value) : null;
+      document.getElementById('widgetCheckin').textContent = d ? d.toLocaleDateString('en-MY', { month: 'short', day: 'numeric' }) : 'Select';
+    });
+    checkoutEl.addEventListener('change', () => {
+      const d = checkoutEl.value ? new Date(checkoutEl.value) : null;
+      document.getElementById('widgetCheckout').textContent = d ? d.toLocaleDateString('en-MY', { month: 'short', day: 'numeric' }) : 'Select';
+    });
+
+    // ── Calendar ─────────────────────────────────────────────
+    const BOOKED_DAYS = new Set([1, 2, 3, 4, 13, 14, 15, 21, 22, 29, 30]); // sample
+    let calYear, calMonth;
+    const now = new Date();
+    calYear = now.getFullYear(); calMonth = now.getMonth();
+
+    function renderCalendar() {
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      document.getElementById('calTitle').textContent = `${months[calMonth]} ${calYear}`;
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = '';
+      const firstDay = new Date(calYear, calMonth, 1).getDay();
+      const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+      const todayDate = now.getDate(), todayMonth = now.getMonth(), todayYear = now.getFullYear();
+      for (let i = 0; i < firstDay; i++) { const e = document.createElement('div'); grid.appendChild(e); }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement('div');
+        cell.className = 'p-1';
+        const isToday = d === todayDate && calMonth === todayMonth && calYear === todayYear;
+        const isBooked = BOOKED_DAYS.has(d);
+        const dayEl = document.createElement('div');
+        dayEl.textContent = d;
+        dayEl.className = 'cal-day ' + (isToday ? 'today' : isBooked ? 'booked' : 'available');
+        cell.appendChild(dayEl);
+        grid.appendChild(cell);
+      }
+    }
+    function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
+    function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+    renderCalendar();
+
+    // ── Scroll Reveal ────────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ── Active nav link ──────────────────────────────────────
+    const sections = document.querySelectorAll('section[id], div[id="home"]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const scrollObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('section[id]').forEach(s => scrollObs.observe(s));
+  </script>
 </body>
+
 </html>
